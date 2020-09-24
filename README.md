@@ -1,0 +1,62 @@
+# Finatra-http-or-finatra-thrift
+
+
+
+To begin, add a dependency on either finatra-http or finatra-thrift depending if you are building an HTTP or Thrift server.
+
+E.g., with sbt:
+
+"com.twitter" %% "finatra-http" % "20.8.1"
+or
+"com.twitter" %% "finatra-thrift" % "20.8.1"
+
+Or similarly with Maven:
+
+<dependency>
+  <groupId>com.twitter</groupId>
+  <artifactId>finatra-http_2.12</artifactId>
+  <version>20.8.1</version>
+</dependency>
+
+Or
+
+<dependency>
+  <groupId>com.twitter</groupId>
+  <artifactId>finatra-thrift_2.12</artifactId>
+  <version>20.8.1</version>
+</dependency>
+
+"com.twitter" %% "finatra-http" % "20.8.1" % "test" classifier "tests"
+
+And with Maven:
+<dependency>
+  <groupId>com.twitter</groupId>
+  <artifactId>finatra-http_2.12</artifactId>
+  <scope>test</scope>
+  <type>test-jar</type>
+  <version>20.8.1</version>
+</dependency>
+
+E.g.,
+libraryDependencies ++= Seq(
+    "com.twitter" %% "finatra-jackson" % "20.8.1" % "test" classifier "tests",
+    "com.twitter" %% "inject-server" % "20.8.1" % "test" classifier "tests",
+    "com.twitter" %% "inject-app" % "20.8.1" % "test" classifier "tests",
+    "com.twitter" %% "inject-core" % "20.8.1" % "test" classifier "tests",
+    "com.twitter" %% "inject-modules" % "20.8.1" % "test" classifier "tests"
+)
+
+$ ./sbt -Dsbt.log.noformat=true http/test:packageBin::dependencyList 2>&1 | grep 'com\.twitter:finatra\|com\.twitter:inject'
+[info] com.twitter:finatra-http_2.12:...
+[info] com.twitter:finatra-httpclient_2.12:...
+[info] com.twitter:finatra-jackson_2.12:...
+[info] com.twitter:finatra-slf4j_2.12:...
+[info] com.twitter:finatra-utils_2.12:...
+[info] com.twitter:inject-app_2.12:...
+[info] com.twitter:inject-core_2.12:...
+[info] com.twitter:inject-modules_2.12:...
+[info] com.twitter:inject-request-scope_2.12:...
+[info] com.twitter:inject-server_2.12:...
+[info] com.twitter:inject-slf4j_2.12:...
+[info] com.twitter:inject-utils_2.12:...
+
